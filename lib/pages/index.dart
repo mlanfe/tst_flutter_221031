@@ -104,7 +104,13 @@ class Home extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pushNamed('/layCon');
                       },
-                      child: const Text('02_布局_容器'))
+                      child: const Text('02_布局_容器')),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/pageView');
+                      },
+                      child: const Text('03_PageView_缓存')),
+
                 ],
               ),
             ],
