@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:tst_flutter_221031/core/debug.dart';
 import 'package:tst_flutter_221031/core/router/router.dart';
+import 'package:tst_flutter_221031/core/style.dart';
+import 'package:flutter_ume/flutter_ume.dart'; // UME framework Show debugPrint
 
 void main() {
   /// 使用getX的路由
-  runApp(const GetMaterialApp(home: MyApp()));
+  if (kDebugMode) {
+    Debug.initiate();
+    runApp(const UMEWidget(enable: true, child: GetMaterialApp(home: MyApp())));
+  } else {
+    runApp(const GetMaterialApp(home: MyApp()));
+  }
   /// 不使用getX的路由
   // runApp(const MyApp());
 }
@@ -20,18 +29,8 @@ class MyApp extends StatelessWidget {
       routes: TstRouter.routes,
       initialRoute: TstRouter.initialRoute,
       navigatorKey: TstRouter.navigatorState,
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
+      theme: Style.theme,
+
     );
   }
 }

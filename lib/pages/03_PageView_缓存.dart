@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tst_flutter_221031/Component/keep-alive.dart';
 
-
 class PageViewDemo extends StatefulWidget {
   const PageViewDemo({Key? key}) : super(key: key);
 
@@ -28,14 +27,6 @@ class _PageViewDemoState extends State<PageViewDemo> {
     );
   }
 }
-
-
-
-
-
-
-
-
 
 class Page extends StatefulWidget {
   const Page({

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
@@ -6,7 +5,7 @@ import 'package:tst_flutter_221031/Component/layout_log_print.dart';
 import 'package:tst_flutter_221031/Component/single_line_fitted_box.dart';
 import 'package:tst_flutter_221031/Component/infinite_list.dart';
 import 'package:tst_flutter_221031/Component/infinite_list_2.dart';
-import '../core/style.dart';
+import 'package:tst_flutter_221031/core/style.dart';
 
 Widget avatar = Image.asset("lib/asset/img/tst.png", width: 60.0);
 
@@ -54,7 +53,6 @@ class _LayoutContainerState extends State<LayoutContainer> with TickerProviderSt
 
         drawer: MediaQuery.removeViewPadding(
           context: context,
-
           child: Container(color: Colors.white, width: 100,child: Column(
             children: const [Text('1233', style: TextStyle(color: Colors.blue),)],
           ),),
@@ -276,7 +274,7 @@ class _LayoutContainerState extends State<LayoutContainer> with TickerProviderSt
               ),
             ),
             InfiniteListView(
-            pageStorageKey: PageStorageKey(1),
+            pageStorageKey: const PageStorageKey(1),
               _infiniteList.map((e) => Container(
                 padding: const EdgeInsets.all(10),
                 color: Colors.blue,
