@@ -6,7 +6,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tst_flutter_221031/component/tabs.dart';
 import 'package:tst_flutter_221031/core/style.dart';
+import 'package:tst_flutter_221031/pages/04_%E8%AE%BE%E5%A4%87_app%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF/component/permission.dart';
 
 class AppInfo extends StatefulWidget {
   const AppInfo({Key? key}) : super(key: key);
@@ -18,7 +20,6 @@ class AppInfo extends StatefulWidget {
 class _AppInfoState extends State<AppInfo> with TickerProviderStateMixin {
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _deviceData = <String, dynamic>{};
-  late TabController _controller;
 
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -34,7 +35,6 @@ class _AppInfoState extends State<AppInfo> with TickerProviderStateMixin {
     super.initState();
     initPlatformState();
     _initPackageInfo();
-    _controller = TabController(length: 2, vsync: this);
   }
 
   Future<void> initPlatformState() async {
@@ -211,10 +211,10 @@ class _AppInfoState extends State<AppInfo> with TickerProviderStateMixin {
   }
 
   Future<void> _initPackageInfo() async {
-    print('=================app_info');
+    debugPrint('=================app_info');
     final info = await PackageInfo.fromPlatform();
     setState(() {
-      print('=================app_info');
+      debugPrint('=================app_info');
       _packageInfo = info;
     });
   }
@@ -245,69 +245,52 @@ class _AppInfoState extends State<AppInfo> with TickerProviderStateMixin {
                                       : '',
             ),
           ),
-          body: Column(
-            children: [
-              Container(
-                height: 50,
-                color: Colors.white,
-                child: TabBar(
-                  controller: _controller,
-                  tabs: const [Text('deviceInfo'), Text('packageInfo')],
-                  indicator: const BoxDecoration(),
-                  labelColor: Style.colorBlue4,
-                  labelStyle: const TextStyle(fontWeight: FontWeight.w700, ),
-                  unselectedLabelColor: Style.colorGray4,
-                  unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500, ),
-                ),
-              ),
-              Container(height: 5, color: Style.colorGray8,),
-              Expanded(
-                child: TabBarView(controller: _controller, children: [
-                  ListView(
-                    children: _deviceData.keys.map(
-                      (String property) {
-                        return Row(
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(
-                                property,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+          body: Container(child: Tabs(
+              tabTitles: ['deviceInfo', 'packageInfo', 'permissionInfo'],
+              tabViews: [
+                ListView(
+                  children: _deviceData.keys.map(
+                        (String property) {
+                      return Row(
+                        children: <Widget>[
+                          Container(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              property,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Expanded(
-                                child: Container(
-                              padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-                              child: Text(
-                                '${_deviceData[property]}',
-                                maxLines: 10,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            )),
-                          ],
-                        );
-                      },
-                    ).toList(),
-                  ),
-                  Column(
-                    children: <Widget>[
-                      _infoTile('App name', _packageInfo.appName),
-                      _infoTile('Package name', _packageInfo.packageName),
-                      _infoTile('App version', _packageInfo.version),
-                      _infoTile('Build number', _packageInfo.buildNumber),
-                      _infoTile('Build signature', _packageInfo.buildSignature),
-                      _infoTile(
-                        'Installer store',
-                        _packageInfo.installerStore ?? 'not available',
-                      ),
-                    ],
-                  ),
-                ]),
-              )
-            ],
-          )),
+                          ),
+                          Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                                child: Text(
+                                  '${_deviceData[property]}',
+                                  maxLines: 10,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              )),
+                        ],
+                      );
+                    },
+                  ).toList(),
+                ),
+                Column(
+                  children: <Widget>[
+                    _infoTile('App name', _packageInfo.appName),
+                    _infoTile('Package name', _packageInfo.packageName),
+                    _infoTile('App version', _packageInfo.version),
+                    _infoTile('Build number', _packageInfo.buildNumber),
+                    _infoTile('Build signature', _packageInfo.buildSignature),
+                    _infoTile(
+                      'Installer store',
+                      _packageInfo.installerStore ?? 'not available',
+                    ),
+                  ],
+                ),
+                PermissionHandlerWidget()
+              ]),)),
     );
   }
 }

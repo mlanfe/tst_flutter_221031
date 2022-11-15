@@ -1,5 +1,5 @@
+import 'package:tst_flutter_221031/component/keep-alive.dart';
 import 'package:flutter/material.dart';
-import 'package:tst_flutter_221031/Component/keep-alive.dart';
 
 class PageViewDemo extends StatefulWidget {
   const PageViewDemo({Key? key}) : super(key: key);
@@ -37,14 +37,14 @@ class Page extends StatefulWidget {
   final String text;
 
   @override
-  _PageState createState() => _PageState();
+  State<Page> createState() => _PageState();
 }
 
 class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
-    print("build ${widget.text}");
-    return Center(child: Text("${widget.text}", textScaleFactor: 5));
+    debugPrint("build ${widget.text}");
+    return Center(child: Text("$widget.text", textScaleFactor: 5));
   }
 }
 

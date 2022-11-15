@@ -1,10 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-import 'package:tst_flutter_221031/Component/layout_log_print.dart';
-import 'package:tst_flutter_221031/Component/single_line_fitted_box.dart';
-import 'package:tst_flutter_221031/Component/infinite_list.dart';
-import 'package:tst_flutter_221031/Component/infinite_list_2.dart';
+import 'package:tst_flutter_221031/component/layout_log_print.dart';
+import 'package:tst_flutter_221031/component/single_line_fitted_box.dart';
+import 'package:tst_flutter_221031/component/infinite_list.dart';
+import 'package:tst_flutter_221031/component/infinite_list_2.dart';
+
 import 'package:tst_flutter_221031/core/style.dart';
 
 Widget avatar = Image.asset("lib/asset/img/tst.png", width: 60.0);
@@ -282,13 +284,13 @@ class _LayoutContainerState extends State<LayoutContainer> with TickerProviderSt
                 child: Text(e, style: const TextStyle(color: Colors.white),),
               )).toList(),
               onRefresh: () {
-                print('======上拉刷新====================${_infiniteList.length}');
+                debugPrint('======上拉刷新====================${_infiniteList.length}');
                 _infiniteList.clear();
                 _retrieveData1();
               },
               onLoad: () {
 
-                print('======下拉刷新====================${_infiniteList.length}');
+                debugPrint('======下拉刷新====================${_infiniteList.length}');
                 _retrieveData1();
               },
             ),
@@ -390,7 +392,7 @@ class _LayoutContainerState extends State<LayoutContainer> with TickerProviderSt
   }
 
   void _retrieveData1() async {
-    print('_retrieveData=========================');
+    debugPrint('_retrieveData=========================');
     await Future.delayed(const Duration(seconds: 1));
     setState(() {
       //重新构建列表
@@ -402,7 +404,7 @@ class _LayoutContainerState extends State<LayoutContainer> with TickerProviderSt
   }
 
   void _retrieveData() async {
-    print('_retrieveData=========================');
+    debugPrint('_retrieveData=========================');
     await Future.delayed(const Duration(seconds: 1));
     setState(() {
       //重新构建列表

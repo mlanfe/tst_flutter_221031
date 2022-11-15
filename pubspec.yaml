@@ -20,6 +20,9 @@ dependencies:
   package_info_plus: ^3.0.1
   english_words: ^4.0.0
   version: ^3.0.0
+  qr_flutter: ^4.0.0
+  flutter_scankit: ^1.2.4
+  permission_handler: ^10.2.0
 
 
 dev_dependencies:
@@ -48,6 +51,6 @@ flutter:
   fonts:
    - family: iconfont
      fonts:
-       - asset: lib/asset/fonts/iconfont.ttf
+       - asset: lib/asset/font/iconfont.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

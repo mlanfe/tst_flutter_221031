@@ -4,14 +4,12 @@ import 'package:tst_flutter_221031/Component/single_line_fitted_box.dart';
 import 'package:tst_flutter_221031/core/router/router.dart';
 import 'package:tst_flutter_221031/core/style.dart';
 
-
-
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   Widget goPage(String url, String title) {
     return GestureDetector(
-      onTap: () { TstRouter.navigator.pushNamed(url);},
+      onTap: () { TstRouter.navigator.pushNamed(url); },
       child: SingleLineFittedBox(child: Align(alignment: Alignment.centerLeft, child: Text(title, style: const TextStyle(color: Style.colorBlue3),),)));
   }
 
@@ -35,6 +33,7 @@ class Home extends StatelessWidget {
                   goPage('/pageView', '03_PageView_缓存'),
                   goPage('/appInfo', '04_app_info'),
                   goPage('/getXDemo', '05_getx_demo'),
+                  goPage('/nativeInter', '07_原生交互'),
 
                 ],
               ),)

@@ -12,7 +12,6 @@ class InfiniteListView extends StatefulWidget {
 
   @override
   State<InfiniteListView> createState() {
-    debugPrint('==============執行=1');
     return _InfiniteListViewState();
   }
 }
@@ -35,7 +34,7 @@ class _InfiniteListViewState extends State<InfiniteListView>  {
   Widget build(BuildContext context) {
     // super.build(context);
 
-    print('==============執行=build');
+    debugPrint('==============執行=build');
     var scrollList = widget.scrollList;
     if(widget.onRefresh != null) {
       return RefreshIndicator(child: ListView.builder(

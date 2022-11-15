@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:flutter_ume/flutter_ume.dart'; // UME framework
 import 'package:flutter_ume_kit_ui/flutter_ume_kit_ui.dart'; // UI kits
 import 'package:flutter_ume_kit_perf/flutter_ume_kit_perf.dart'; // Performance kits
@@ -9,18 +11,24 @@ import 'package:flutter_ume_kit_console/flutter_ume_kit_console.dart'; // Show d
 class Debug {
   static initiate () {
     PluginManager.instance                               // Register plugin kits
-      ..register(WidgetInfoInspector())
-      ..register(WidgetDetailInspector())
-      ..register(ColorSucker())
+      ..register(const WidgetInfoInspector())
+      ..register(const WidgetDetailInspector())
+      ..register(const ColorSucker())
       ..register(AlignRuler())
-      ..register(ColorPicker())                            // New feature
-      ..register(TouchIndicator())                         // New feature
+      ..register(const ColorPicker())                            // New feature
+      ..register(const TouchIndicator())                         // New feature
       ..register(Performance())
-      ..register(ShowCode())
-      ..register(MemoryInfoPage())
+      ..register(const ShowCode())
+      ..register(const MemoryInfoPage())
       ..register(CpuInfoPage())
-      ..register(DeviceInfoPanel())
+      ..register(const DeviceInfoPanel())
       ..register(Console());
+
+
+
+      if (kReleaseMode) {
+        debugPrint = (String? message, {int? wrapWidth}) {};
+      }
 
   }
 }

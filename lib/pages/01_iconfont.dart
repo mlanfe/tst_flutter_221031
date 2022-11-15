@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../asset/fonts/icons.dart';
+import '../asset/font/icons.dart';
 
 class DemoIconFont extends StatelessWidget {
   const DemoIconFont({Key? key}) : super(key: key);
@@ -11,8 +11,8 @@ class DemoIconFont extends StatelessWidget {
       body: Column(children: [
         Row(children: [
           const Icon(MyIcons.book, color: Colors.red,),
-          const Icon(MyIcons.shoutao, color: Colors.blue,),
-          const Icon(MyIcons.viewlist, color: Colors.orange,),
+          const Icon(MyIcons.shouTao, color: Colors.blue,),
+          const Icon(MyIcons.viewList, color: Colors.orange,),
           const Icon(MyIcons.eat),
           const Text('\ue76d', style: TextStyle(fontFamily: 'iconfont', color: Colors.red, fontSize: 32 ),),
           const Text('====='),
